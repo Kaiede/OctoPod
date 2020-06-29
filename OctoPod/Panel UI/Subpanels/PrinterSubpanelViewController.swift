@@ -147,6 +147,14 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     
     // MARK: - Table data source
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        if enclosureInputs.count > 0 {
+            return 3
+        }
+        
+        return 2
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 2 {
             // Return number of sensors defined in Enclosure plugin (aka inputs)
