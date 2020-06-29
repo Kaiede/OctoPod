@@ -176,6 +176,12 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
                     self.layer = "\(currentLayer) / \(totalLayer)"
                 }
             }
+        } else if plugin == Plugins.LAYER_DISPLAY {
+            if let layerInfoString = data["layerString"] as? String {
+                DispatchQueue.main.async {
+                    self.layer = layerInfoString
+                }
+            }
         }
     }
 

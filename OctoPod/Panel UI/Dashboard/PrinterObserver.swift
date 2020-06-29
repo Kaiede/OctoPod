@@ -118,6 +118,13 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
                     printersDashboardViewController.refreshItem(row: row)
                 }
             }
+        } else if plugin == Plugins.LAYER_DISPLAY {
+            if let layerInfoString = data["layerString"] as? String {
+                if layer != layerInfoString {
+                    self.layer = layerInfoString
+                    printersDashboardViewController.refreshItem(row: row)
+                }
+            }
         }
     }
 }

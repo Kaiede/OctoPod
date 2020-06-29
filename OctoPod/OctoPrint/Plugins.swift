@@ -16,6 +16,7 @@ struct Plugins {
     static let PALETTE_2 = "palette2"
     static let PALETTE_2_CANVAS = "canvas"
     static let DISPLAY_LAYER_PROGRESS = "DisplayLayerProgress-websocket-payload"
+    static let LAYER_DISPLAY = "LayerDisplay"
     static let ENCLOSURE = "enclosure"
     static let FILAMENT_MANAGER = "filamentmanager"
 }

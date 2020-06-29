@@ -234,6 +234,8 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     func pluginMessage(plugin: String, data: NSDictionary) {
         if plugin == Plugins.DISPLAY_LAYER_PROGRESS {
             self.updateLayerPlugin(plugin, data: data)
+        } else if plugin == Plugins.LAYER_DISPLAY {
+            self.updateLayerDisplayPlugin(plugin, data: data)
         } else if plugin == Plugins.ENCLOSURE {
             self.updateEnclosurePlugin(plugin, data: data)
         }
@@ -686,6 +688,26 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
 
             self.restartButton.isHidden = true
             self.resumeButton.isHidden = true
+        }
+    }
+    
+    fileprivate func updateLayerDisplayPlugin(_ plugin: String, data: NSDictionary) {
+        guard plugin == Plugins.LAYER_DISPLAY else {
+            NSLog("Unknown layer info plugin: \(plugin)")
+            return
+        }
+        
+        guard let layerInfoString = data["layerString"] as? String else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            if self.layerInfoRow.isHidden {
+                self.layerInfoRow.isHidden = false
+                self.tableView.reloadData()
+            }
+            
+            self.layerLabel.text = layerInfoString
         }
     }
     
